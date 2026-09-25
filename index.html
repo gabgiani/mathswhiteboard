@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathsboard</title>
+<meta name="description" content="Mathsboard is an iPad maths tutor: write with Apple Pencil, and it reads your handwriting, explains every step and guides you through 23 courses.">
+<meta property="og:title" content="Mathsboard — learn maths by writing it">
+<meta property="og:description" content="An iPad whiteboard tutor for maths, statistics, physics and maths for AI.">
+<meta property="og:image" content="https://gabgiani.github.io/mathswhiteboard/assets/start.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0822;
+    --bg-2: #160c38;
+    --card: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.10);
+    --text: #f4f1ff;
+    --muted: #b7aedb;
+    --pink: #ec3fb0;
+    --violet: #8b5cf6;
+    --cyan: #22d3ee;
+    --orange: #fb923c;
+    --chalk: #f3ecd9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 700px at 80% -10%, #3b1a7a 0%, transparent 60%),
+                radial-gradient(900px 600px at -10% 20%, #2a0f5c 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 60%);
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Top bar */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: Nunito, sans-serif; font-weight: 900; font-size: 24px; text-decoration: none; }
+  .brand svg { width: 22px; height: 22px; }
+  .navlinks { display: flex; gap: 22px; font-size: 15px; color: var(--muted); flex-wrap: wrap; justify-content: flex-end; }
+  .navlinks a { text-decoration: none; }
+  .navlinks a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { text-align: center; padding: 56px 0 24px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--card-border); color: var(--muted); font-size: 14px; }
+  .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); display: inline-block; }
+  h1 { font-family: Nunito, sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -1.5px; margin: 22px 0 18px; }
+  h1 .grad { background: linear-gradient(90deg, var(--pink), var(--violet) 55%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { max-width: 680px; margin: 0 auto; font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); }
+  .cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 14px; font-weight: 600; text-decoration: none; font-size: 16px; }
+  .btn.primary { background: linear-gradient(135deg, var(--pink), var(--violet)); box-shadow: 0 10px 30px rgba(236, 63, 176, 0.35); }
+  .btn.ghost { background: var(--card); border: 1px solid var(--card-border); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* iPad */
+  .device { margin: 56px auto 0; max-width: 980px; position: relative; }
+  .device::before { content: ""; position: absolute; inset: 8% 6% -6%; background: radial-gradient(closest-side, rgba(139, 92, 246, 0.55), transparent); filter: blur(40px); z-index: 0; }
+  .ipad { position: relative; z-index: 1; border-radius: 34px; padding: 14px; background: linear-gradient(145deg, #2b2640, #120f1f); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  .ipad img { display: block; width: 100%; height: auto; border-radius: 22px; }
+
+  /* Numbers */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 64px 0 0; }
+  .stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 22px; text-align: center; }
+  .stat b { display: block; font-family: Nunito, sans-serif; font-size: 40px; font-weight: 900; line-height: 1.1; }
+  .stat span { color: var(--muted); font-size: 14px; }
+
+  section { padding: 84px 0 0; }
+  h2 { font-family: Nunito, sans-serif; font-weight: 900; font-size: clamp(30px, 4.4vw, 44px); letter-spacing: -0.8px; margin: 0 0 10px; }
+  .sub { color: var(--muted); max-width: 640px; margin: 0 0 34px; font-size: 17px; }
+
+  /* Courses */
+  .courses { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .course { background: linear-gradient(180deg, rgba(20, 22, 40, 0.9), rgba(12, 10, 28, 0.9)); border: 1px solid var(--card-border); border-radius: 22px; overflow: hidden; transition: transform .2s ease, border-color .2s ease; }
+  .course:hover { transform: translateY(-4px); border-color: rgba(139, 92, 246, 0.6); }
+  .course .art { aspect-ratio: 2 / 1; display: grid; place-items: center; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.05), transparent); padding: 10px; }
+  .course img { width: 100%; height: 100%; object-fit: contain; }
+  .course div.t { padding: 12px 16px 16px; }
+  .course b { display: block; font-size: 16px; }
+  .course span { color: var(--muted); font-size: 13px; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feature { background: var(--card); border: 1px solid var(--card-border); border-radius: 22px; padding: 24px; }
+  .icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 14px; }
+  .icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .feature h3 { margin: 0 0 6px; font-size: 18px; }
+  .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* AI */
+  .ai { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ai .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 22px; padding: 26px; position: relative; }
+  .ai .tag { position: absolute; top: 18px; right: 18px; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(34, 211, 238, 0.15); color: var(--cyan); font-weight: 600; }
+  .ai h3 { margin: 0 0 8px; font-size: 20px; font-family: Nunito, sans-serif; font-weight: 800; }
+  .ai p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+  .ai ul { margin: 0; padding: 0; list-style: none; font-size: 14px; }
+  .ai li { padding: 6px 0; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; gap: 10px; }
+  .ai li span:first-child { color: var(--muted); }
+  .more { margin-top: 18px; color: var(--muted); font-size: 15px; }
+  .more a { color: var(--cyan); }
+
+  /* Footer */
+  footer { margin-top: 96px; border-top: 1px solid var(--card-border); padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
+  .foot { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
+  .foot h4 { color: var(--text); margin: 0 0 10px; font-size: 14px; }
+  .foot a { display: block; text-decoration: none; padding: 3px 0; }
+  .foot a:hover { color: var(--text); }
+
+  @media (max-width: 1000px) { .courses { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 860px) {
+    .courses { grid-template-columns: repeat(2, 1fr); }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .features, .ai { grid-template-columns: 1fr; }
+    .foot { grid-template-columns: 1fr 1fr; }
+    .navlinks { display: none; }
+    .ipad { border-radius: 22px; padding: 8px; }
+    .ipad img { border-radius: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="./">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></svg>
+      Mathsboard
+    </a>
+    <div class="navlinks">
+      <a href="#courses">Courses</a>
+      <a href="#features">Features</a>
+      <a href="#ai">AI &amp; privacy</a>
+      <a href="support">Support</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="pill"><i></i> For iPad and Apple Pencil</span>
+    <h1>Learn maths<br><span class="grad">by writing it.</span></h1>
+    <p class="lead">Write on the whiteboard with your Apple Pencil. Mathsboard reads your handwriting, explains every step and guides you when you are stuck, from primary school to the maths behind AI.</p>
+    <div class="cta">
+      <a class="btn primary" href="#courses">Explore the courses</a>
+      <a class="btn ghost" href="#ai">How the AI works</a>
+    </div>
+    <div class="device">
+      <div class="ipad"><img src="assets/start.jpg" alt="Mathsboard's start screen on iPad: “Who's going to learn math?” with a row of student profiles" width="1600" height="1207"></div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>23</b><span>courses</span></div>
+    <div class="stat"><b>266</b><span>lessons with worked steps</span></div>
+    <div class="stat"><b>100</b><span>real-world cases</span></div>
+    <div class="stat"><b>6</b><span>languages</span></div>
+  </div>
+
+  <section id="courses">
+    <h2>From counting to transformers</h2>
+    <p class="sub">Each lesson has a conceptual introduction, a worked explanation, an interactive explorer and three exercises with the formula and all the data you need.</p>
+    <div class="courses">
+      <div class="course"><div class="art"><img src="assets/primary.png" alt="" loading="lazy"></div><div class="t"><b>Primary Year 1–2</b><span>Numbers, place value, money, time</span></div></div>
+      <div class="course"><div class="art"><img src="assets/algebra.png" alt="" loading="lazy"></div><div class="t"><b>Algebra</b><span>Equations, factoring, logarithms</span></div></div>
+      <div class="course"><div class="art"><img src="assets/geometry.png" alt="" loading="lazy"></div><div class="t"><b>Geometry &amp; Trigonometry</b><span>Areas, volumes, the unit circle</span></div></div>
+      <div class="course"><div class="art"><img src="assets/calculus.png" alt="" loading="lazy"></div><div class="t"><b>Calculus</b><span>Derivatives and integrals</span></div></div>
+      <div class="course"><div class="art"><img src="assets/linear-algebra.png" alt="" loading="lazy"></div><div class="t"><b>Linear Algebra</b><span>Vectors, matrices, eigenvalues</span></div></div>
+      <div class="course"><div class="art"><img src="assets/probability.png" alt="" loading="lazy"></div><div class="t"><b>Statistics</b><span>Probability, distributions, inference</span></div></div>
+      <div class="course"><div class="art"><img src="assets/regression.png" alt="" loading="lazy"></div><div class="t"><b>Regression</b><span>Correlation and fitted models</span></div></div>
+      <div class="course"><div class="art"><img src="assets/kinematics.png" alt="" loading="lazy"></div><div class="t"><b>Physics</b><span>Motion, energy, waves, heat, relativity, quantum</span></div></div>
+      <div class="course"><div class="art"><img src="assets/waves.png" alt="" loading="lazy"></div><div class="t"><b>Oscillations &amp; Waves</b><span>Pendulums, springs, sound</span></div></div>
+      <div class="course"><div class="art"><img src="assets/transformers.png" alt="" loading="lazy"></div><div class="t"><b>Maths for AI</b><span>Neurons, learning, Kalman, transformers, RL</span></div></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>A tutor on your whiteboard</h2>
+    <p class="sub">Everything happens where you write, with nothing to type.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #ec3fb0, #8b5cf6)"><svg viewBox="0 0 24 24"><path d="M3 21l3.5-1 11-11-2.5-2.5-11 11L3 21z"/><path d="M14 6l2.5 2.5"/></svg></div>
+        <h3>Reads your handwriting</h3>
+        <p>Write a formula or a whole exercise. Mathsboard turns it into maths and solves it step by step.</p>
+      </div>
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6)"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg></div>
+        <h3>Explains every step</h3>
+        <p>Each step comes with its reason, and you can ask questions about any of them.</p>
+      </div>
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #fb923c, #ec3fb0)"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div>
+        <h3>Hints, not answers</h3>
+        <p>Stuck? “I don't know what to do” shows only the next step. The result appears only if you ask.</p>
+      </div>
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #22d3ee, #3b82f6)"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg></div>
+        <h3>Interactive explorers</h3>
+        <p>Move a slider and watch the graph, the triangle or the neural network change as you learn.</p>
+      </div>
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #22c55e, #22d3ee)"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4 3.5-4S22 17.8 22 20"/></svg></div>
+        <h3>Classroom mode</h3>
+        <p>Teachers launch live challenges to students' iPads on the same network, with a podium and recorded explanations.</p>
+      </div>
+      <div class="feature">
+        <div class="icon" style="background: linear-gradient(135deg, #f59e0b, #fb923c)"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>On the big screen</h3>
+        <p>Show the board, the explanation or a lesson's introduction on an external display for the whole class.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <h2>Your choice of AI. Your data stays yours.</h2>
+    <p class="sub">The worked steps come from Mathsboard's own maths engine, with no AI and no internet. For reading handwriting, explaining steps and giving hints, you choose one of three AI options.</p>
+    <div class="ai">
+      <div class="card">
+        <span class="tag">Default</span>
+        <h3>Apple Intelligence</h3>
+        <p>Apple's language model, running on your iPad.</p>
+        <ul>
+          <li><span>Runs on</span><span>iPad</span></li>
+          <li><span>Download</span><span>None</span></li>
+          <li><span>Your data leaves the iPad</span><span>No</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>On-device model</h3>
+        <p>Gemma 4 E2B on the iPad's chip with Apple's MLX. It works offline.</p>
+        <ul>
+          <li><span>Runs on</span><span>iPad (8 GB)</span></li>
+          <li><span>Download</span><span>3.5 GB, once</span></li>
+          <li><span>Your data leaves the iPad</span><span>No</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>DAFO Swarm</h3>
+        <p>An app for your own Mac that runs larger models and serves them to your iPad over your local network.</p>
+        <ul>
+          <li><span>Runs on</span><span>Your Mac</span></li>
+          <li><span>Download</span><span>On the Mac</span></li>
+          <li><span>Your data leaves the iPad</span><span>Only to your Mac</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="more">No ads, no analytics, no tracking. Read <a href="ai-models">how the AI works</a> and the <a href="privacy">privacy policy</a>.</p>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <a class="brand" href="./" style="font-size: 20px; margin-bottom: 8px;">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></svg>
+          Mathsboard
+        </a>
+        <p style="margin: 0;">© 2026 Gabriel Giani Moreno<br><a href="mailto:gabriel.giani@gmail.com" style="display: inline;">gabriel.giani@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>English</h4>
+        <a href="privacy">Privacy policy</a>
+        <a href="terms">Terms of use</a>
+        <a href="support">Support</a>
+        <a href="ai-models">How the AI works</a>
+      </div>
+      <div>
+        <h4>Español</h4>
+        <a href="es/privacidad">Privacidad</a>
+        <a href="es/terminos">Términos de uso</a>
+        <a href="es/soporte">Soporte</a>
+        <a href="es/modelos-ia">Cómo funciona la IA</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
