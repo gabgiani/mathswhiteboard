@@ -11,6 +11,22 @@ This repository only holds the app's public documents. The app's source code is 
 | Terms of use (EULA) | [terms](terms.md) | [términos](es/terminos.md) |
 | How the AI works | [ai-models](ai-models.md) | [modelos de IA](es/modelos-ia.md) |
 
+Website: https://gabgiani.github.io/mathswhiteboard/
+
+## For students
+
+1. **Create a profile.** Choose your role, name, avatar and level. The tutor adapts to you.
+2. **Choose an area.** Mathematics, Statistics, Physics or Maths for AI. The lessons unlock in order.
+3. **Learn on the whiteboard.** Copy each worked step by hand, ask questions and explore. Tap Done to unlock the next lesson.
+4. **Practise.** Every lesson has three exercises with the formula and the data. You get hints for the next step and earn points.
+
+## For teachers
+
+- A lesson plan with today's topics, and a classroom whiteboard that students join with a QR code or a room code.
+- Live challenges on every student's iPad, with a podium, recorded voice-and-board explanations and shared materials.
+- The class screen shows the board, the explanation or the lesson's introduction on an external display.
+- Everything runs on the school's local network, so no internet is needed.
+
 ## What the app provides
 
 - **A smart whiteboard.** Write a formula or exercise by hand. The app reads it, solves it step by step and explains every step. You can ask questions about any step.

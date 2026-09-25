@@ -7,7 +7,7 @@
 <meta name="description" content="Mathsboard is an iPad maths tutor: write with Apple Pencil, and it reads your handwriting, explains every step and guides you through 23 courses.">
 <meta property="og:title" content="Mathsboard — learn maths by writing it">
 <meta property="og:description" content="An iPad whiteboard tutor for maths, statistics, physics and maths for AI.">
-<meta property="og:image" content="https://gabgiani.github.io/mathswhiteboard/assets/start.jpg">
+<meta property="og:image" content="https://gabgiani.github.io/mathswhiteboard/assets/welcome.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -108,6 +108,26 @@
   .more { margin-top: 18px; color: var(--muted); font-size: 15px; }
   .more a { color: var(--cyan); }
 
+  /* Journey rows: screenshot beside its explanation */
+  .row { display: grid; grid-template-columns: 1.25fr 1fr; gap: 44px; align-items: center; margin-top: 56px; }
+  .row.flip { grid-template-columns: 1fr 1.25fr; }
+  .row.flip .shot { order: 2; }
+  .shot { border-radius: 22px; padding: 8px; background: linear-gradient(145deg, #2b2640, #120f1f); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 15px; }
+  .step-no { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-weight: 800; font-family: Nunito, sans-serif; background: linear-gradient(135deg, var(--pink), var(--violet)); margin-bottom: 12px; }
+  .row h3 { font-family: Nunito, sans-serif; font-weight: 900; font-size: 28px; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.4px; }
+  .row p { color: var(--muted); margin: 0 0 12px; font-size: 16.5px; }
+  .ticks { list-style: none; padding: 0; margin: 14px 0 0; }
+  .ticks li { position: relative; padding: 6px 0 6px 30px; font-size: 15.5px; }
+  .ticks li::before { content: ""; position: absolute; left: 0; top: 10px; width: 18px; height: 18px; border-radius: 50%; background: rgba(34, 211, 238, 0.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322d3ee' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 12px no-repeat; }
+  .audience { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+  .teachers-band { margin-top: 84px; padding: 44px; border-radius: 30px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(34, 211, 238, 0.08) 40%, rgba(139, 92, 246, 0.10)); border: 1px solid var(--card-border); }
+  .teachers-band .row { margin-top: 28px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
+  .mini { background: rgba(0, 0, 0, 0.18); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 20px; }
+  .mini b { display: block; margin-bottom: 4px; }
+  .mini span { color: var(--muted); font-size: 14.5px; }
+
   /* Footer */
   footer { margin-top: 96px; border-top: 1px solid var(--card-border); padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
   .foot { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
@@ -119,7 +139,10 @@
   @media (max-width: 860px) {
     .courses { grid-template-columns: repeat(2, 1fr); }
     .stats { grid-template-columns: repeat(2, 1fr); }
-    .features, .ai { grid-template-columns: 1fr; }
+    .features, .ai, .grid2 { grid-template-columns: 1fr; }
+    .row, .row.flip { grid-template-columns: 1fr; gap: 22px; margin-top: 44px; }
+    .row.flip .shot { order: 0; }
+    .teachers-band { padding: 24px 18px; border-radius: 22px; }
     .foot { grid-template-columns: 1fr 1fr; }
     .navlinks { display: none; }
     .ipad { border-radius: 22px; padding: 8px; }
@@ -135,8 +158,9 @@
       Mathsboard
     </a>
     <div class="navlinks">
+      <a href="#students">Students</a>
+      <a href="#teachers">Teachers</a>
       <a href="#courses">Courses</a>
-      <a href="#features">Features</a>
       <a href="#ai">AI &amp; privacy</a>
       <a href="support">Support</a>
     </div>
@@ -147,11 +171,11 @@
     <h1>Learn maths<br><span class="grad">by writing it.</span></h1>
     <p class="lead">Write on the whiteboard with your Apple Pencil. Mathsboard reads your handwriting, explains every step and guides you when you are stuck, from primary school to the maths behind AI.</p>
     <div class="cta">
-      <a class="btn primary" href="#courses">Explore the courses</a>
-      <a class="btn ghost" href="#ai">How the AI works</a>
+      <a class="btn primary" href="#students">For students</a>
+      <a class="btn ghost" href="#teachers">For teachers</a>
     </div>
     <div class="device">
-      <div class="ipad"><img src="assets/start.jpg" alt="Mathsboard's start screen on iPad: “Who's going to learn math?” with a row of student profiles" width="1600" height="1207"></div>
+      <div class="ipad"><img src="assets/welcome.jpg" alt="Mathsboard's welcome screen on iPad: a chalkboard full of maths drawings and a “Create Student Profile” button" width="1600" height="1160"></div>
     </div>
   </header>
 
@@ -160,6 +184,87 @@
     <div class="stat"><b>266</b><span>lessons with worked steps</span></div>
     <div class="stat"><b>100</b><span>real-world cases</span></div>
     <div class="stat"><b>6</b><span>languages</span></div>
+  </div>
+
+  <section id="students">
+    <span class="audience">For students</span>
+    <h2>A path you can follow, one step at a time</h2>
+    <p class="sub">Mathsboard doesn't hand you answers. It shows you the way, lets you write every step yourself and helps only as much as you need.</p>
+
+    <div class="row">
+      <div class="shot"><img src="assets/role.jpg" alt="Creating a profile: choosing between Teacher and Student, step 1 of 4" loading="lazy" width="1600" height="1160"></div>
+      <div>
+        <span class="step-no">1</span>
+        <h3>Create your profile</h3>
+        <p>Four quick screens: student or teacher, your name and avatar, your level, and, if you like, your grade and goals.</p>
+        <p>The tutor uses them to adapt its vocabulary, depth and pace to you. Several students can share one iPad, each with their own profile and progress.</p>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div class="shot"><img src="assets/areas.jpg" alt="Choosing an area: Mathematics, Statistics, Physics and Maths for AI" loading="lazy" width="1600" height="1160"></div>
+      <div>
+        <span class="step-no">2</span>
+        <h3>Choose what to learn</h3>
+        <p>Four areas, 23 courses, from counting in Year 1 to the maths behind language models.</p>
+        <ul class="ticks">
+          <li>Each course is a path of lessons that unlock in order, so the screen is never overwhelming.</li>
+          <li>Want to jump ahead? You can: the app only suggests the recommended step first.</li>
+          <li>Every lesson starts with a short conceptual introduction you can listen to.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="shot"><img src="assets/lesson-bayes.jpg" alt="A statistics lesson: Bayes' theorem on the board, an interactive explorer and the worked explanation beside it" loading="lazy" width="1600" height="1160"></div>
+      <div>
+        <span class="step-no">3</span>
+        <h3>Learn on the whiteboard</h3>
+        <p>The lesson's formula is already on the board, with an interactive explorer next to it and the worked explanation on the side.</p>
+        <ul class="ticks">
+          <li>Copy each step by hand with your Apple Pencil, following the explanation.</li>
+          <li>Move the sliders to see what each number changes.</li>
+          <li>Ask anything about a step in the chat, then tap <b>Done</b> to unlock the next lesson.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div class="shot"><img src="assets/lesson-ai.jpg" alt="A Maths for AI lesson: word embeddings drawn as vectors, with the embedding matrix on the board" loading="lazy" width="1600" height="1160"></div>
+      <div>
+        <span class="step-no">4</span>
+        <h3>Practise and earn points</h3>
+        <p>Every lesson ends with three exercises. Each one comes with its base formula and all the data you need, already written on the board.</p>
+        <ul class="ticks">
+          <li>Stuck? <b>“I don't know what to do”</b> shows only the next step; the result appears only if you ask.</li>
+          <li>Ask for similar exercises to any problem you write yourself.</li>
+          <li>Earn points, keep your streak and see real-world cases that use the same maths.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="teachers-band" id="teachers">
+    <span class="audience">For teachers</span>
+    <h2>Your class, on one board</h2>
+    <p class="sub" style="margin-bottom: 0;">Plan the lesson, teach on the whiteboard, and let every student follow and practise live on their own iPad. No internet needed: the classroom runs on the school's local network.</p>
+    <div class="row">
+      <div class="shot"><img src="assets/teacher-classroom.jpg" alt="The teacher's classroom hub: the lesson plan with today's topics and the button to enter the classroom whiteboard" loading="lazy" width="1600" height="1160"></div>
+      <div>
+        <h3>Plan, teach, follow up</h3>
+        <ul class="ticks">
+          <li><b>Lesson plan:</b> today's topics with their formulas; tick them off to know where to pick up next time.</li>
+          <li><b>Classroom whiteboard:</b> entering it opens the room. Students join by scanning a QR code or typing the room code.</li>
+          <li><b>Live challenges:</b> send an exercise to every iPad, watch the answers arrive and project the podium.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="mini"><b>Recorded explanations</b><span>Record your voice together with your strokes on the board. Students replay them in sync, step by step.</span></div>
+      <div class="mini"><b>The class screen</b><span>Connect an external display and choose what the class sees: the board, the explanation, a tool or the lesson's introduction.</span></div>
+      <div class="mini"><b>Shared materials</b><span>Send lessons and materials to your students' iPads during the class.</span></div>
+      <div class="mini"><b>History and analytics</b><span>See which topics you covered and how the class did in each challenge.</span></div>
+    </div>
   </div>
 
   <section id="courses">
@@ -181,7 +286,7 @@
 
   <section id="features">
     <h2>A tutor on your whiteboard</h2>
-    <p class="sub">Everything happens where you write, with nothing to type.</p>
+    <p class="sub">Everything happens where you write, with nothing to type. That works in the courses and on the free board, with any exercise you bring.</p>
     <div class="features">
       <div class="feature">
         <div class="icon" style="background: linear-gradient(135deg, #ec3fb0, #8b5cf6)"><svg viewBox="0 0 24 24"><path d="M3 21l3.5-1 11-11-2.5-2.5-11 11L3 21z"/><path d="M14 6l2.5 2.5"/></svg></div>
@@ -194,24 +299,9 @@
         <p>Each step comes with its reason, and you can ask questions about any of them.</p>
       </div>
       <div class="feature">
-        <div class="icon" style="background: linear-gradient(135deg, #fb923c, #ec3fb0)"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div>
-        <h3>Hints, not answers</h3>
-        <p>Stuck? “I don't know what to do” shows only the next step. The result appears only if you ask.</p>
-      </div>
-      <div class="feature">
         <div class="icon" style="background: linear-gradient(135deg, #22d3ee, #3b82f6)"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg></div>
         <h3>Interactive explorers</h3>
         <p>Move a slider and watch the graph, the triangle or the neural network change as you learn.</p>
-      </div>
-      <div class="feature">
-        <div class="icon" style="background: linear-gradient(135deg, #22c55e, #22d3ee)"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4 3.5-4S22 17.8 22 20"/></svg></div>
-        <h3>Classroom mode</h3>
-        <p>Teachers launch live challenges to students' iPads on the same network, with a podium and recorded explanations.</p>
-      </div>
-      <div class="feature">
-        <div class="icon" style="background: linear-gradient(135deg, #f59e0b, #fb923c)"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3>On the big screen</h3>
-        <p>Show the board, the explanation or a lesson's introduction on an external display for the whole class.</p>
       </div>
     </div>
   </section>
