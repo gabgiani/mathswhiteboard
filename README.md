@@ -2,6 +2,8 @@
 
 Mathsboard is an iPad maths, statistics, physics and "maths for AI" tutor. You write with the Apple Pencil on a whiteboard, and the app checks, explains and guides you step by step.
 
+Its approach is **learning by doing** (in Spanish, *aprender haciendo*). You copy every step by hand, explore each formula with sliders and real cases, and practise with hints instead of answers. The tutor guides you and never solves ahead.
+
 This repository only holds the app's public documents. The app's source code is private.
 
 | Document | English | Español |
