@@ -26,7 +26,8 @@ You can choose one of three AI options in **Settings**. Only the one you choose 
 - An open model, **Gemma 4 E2B** (4-bit, MLX format), runs directly on the iPad's chip through Apple's MLX framework.
 - It works offline and handles images (your handwriting) itself.
 - **Download:** about 3.5 GB, only once, the first time you select it.
-  - The model comes from Hugging Face (`mlx-community/gemma-4-e2b-it-4bit`).
+  - The model is downloaded from our mirror on GitHub ([dafo-swarm-downloads](https://github.com/gabgiani/dafo-swarm-downloads/releases/tag/mlx-gemma4-e2b-it-4bit-v1)), in parts. Every part and the final file are checked with SHA-256.
+  - If the mirror is unavailable, the App downloads the same model from Hugging Face (`mlx-community/gemma-4-e2b-it-4bit`).
   - The download runs in the background. You can keep using the App or cancel it.
 - **Privacy:** after the download, nothing leaves the iPad. The only network request is the download itself.
 - It needs an iPad with 8 GB of memory or more.

@@ -23,7 +23,7 @@ La App ofrece tres opciones de IA, que eliges en Ajustes. Los detalles están en
 | Opción | Dónde se procesa tu ejercicio | ¿Sale del iPad? |
 |---|---|---|
 | **Apple Intelligence** (por defecto) | En tu iPad, con el modelo local de Apple | No |
-| **Modelo en el dispositivo** (opcional) | En tu iPad, con un modelo abierto que descargas una vez | Solo la descarga única del modelo desde Hugging Face. Tus ejercicios nunca salen del iPad. |
+| **Modelo en el dispositivo** (opcional) | En tu iPad, con un modelo abierto que descargas una vez | Solo la descarga única del modelo (desde nuestra réplica en GitHub, o Hugging Face como respaldo). Tus ejercicios nunca salen del iPad. |
 | **DAFO Swarm** (opcional) | En una computadora que **tú** manejas, normalmente tu propio Mac en tu red local | Sí, solo hacia esa computadora. Nunca nos llega a nosotros. |
 
 No operamos ningún servidor de IA. Tus ejercicios nunca se nos envían.

@@ -26,7 +26,8 @@ Puedes elegir una de tres opciones de IA en **Ajustes**. Solo se usa la que elig
 - Un modelo abierto, **Gemma 4 E2B** (4 bits, formato MLX), corre directamente en el chip del iPad con el framework MLX de Apple.
 - Funciona sin conexión y lee imágenes (tu escritura) por sí mismo.
 - **Descarga:** unos 3,5 GB, una sola vez, la primera vez que lo eliges.
-  - El modelo viene de Hugging Face (`mlx-community/gemma-4-e2b-it-4bit`).
+  - El modelo se descarga de nuestra réplica en GitHub ([dafo-swarm-downloads](https://github.com/gabgiani/dafo-swarm-downloads/releases/tag/mlx-gemma4-e2b-it-4bit-v1)), en partes. Cada parte y el archivo final se verifican con SHA-256.
+  - Si la réplica no está disponible, la App descarga el mismo modelo de Hugging Face (`mlx-community/gemma-4-e2b-it-4bit`).
   - La descarga se hace en segundo plano. Puedes seguir usando la App o cancelarla.
 - **Privacidad:** después de la descarga no sale nada del iPad. La única conexión es la descarga en sí.
 - Necesita un iPad con 8 GB de memoria o más.
